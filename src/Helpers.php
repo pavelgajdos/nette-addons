@@ -14,7 +14,7 @@ class Helpers extends Object
             return NULL;
     }
 
-    public static function uvpg($string)
+    public static function uv($string)
     {
         return "\"$string\"";
     }
