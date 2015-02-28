@@ -32,7 +32,7 @@ abstract class BaseControl extends Control
 	{
 		$template = parent::createTemplate($class);
 
-		$template->setFile($this->path . "/" . $this->templateFilename);
+		$template->setFile($this->layoutPath . "/" . $this->templateFilename);
 
 		$template->setTranslator($this->translator);
 
