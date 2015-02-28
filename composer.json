@@ -1,0 +1,20 @@
+{
+    "name": "pg/nette-addons",
+    "description": "",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Pavel Gajdoš",
+            "email": "info@pavelgajdos.cz"
+        }
+    ],
+    "require": {
+        "php": ">= 5.3.0",
+        "nette/nette": ">= 2.3"
+    },
+    "require-dev": {
+    },
+    "autoload": {
+        "classmap": ["src"]
+    }
+}
