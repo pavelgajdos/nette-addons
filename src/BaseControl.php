@@ -69,7 +69,7 @@ abstract class BaseControl extends Control
 			parent::flashMessage($message, $type);
 		}
 		else {
-			$this->presenter->flashMessage($message, NULL, NULL, $type);
+			$this->presenter->flashMessage($message, $type);
 		}
 	}
 }
