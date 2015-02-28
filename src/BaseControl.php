@@ -3,6 +3,7 @@
 namespace PG\Control;
 
 use \Nette\Application\UI\Control;
+use Nette\Http\Request;
 use Nette\Localization\ITranslator;
 
 
@@ -17,11 +18,18 @@ abstract class BaseControl extends Control
     /** @var ITranslator */
 	protected $translator;
 
+    /** @var Request */
+    protected $httpRequest;
 
 	public function setTranslator(ITranslator $translator)
 	{
 		$this->translator = $translator;
-	}	
+	}
+
+    public function setHttpRequest(Request $request)
+    {
+        $this->httpRequest = $request;
+    }
 
 	public function setTemplateFilename($filename)
 	{
