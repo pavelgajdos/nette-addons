@@ -1,6 +1,6 @@
 <?php
 
-namespace PG\UI\Control;
+namespace PG\UI;
 
 use \Nette\Application\UI\Control;
 use Nette\Http\Request;

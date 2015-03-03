@@ -6,7 +6,7 @@
  * Time: 23:01
  */
 
-namespace PG\UI\Form;
+namespace PG\UI;
 
 
 class Form  extends \Nette\Application\UI\Form {
