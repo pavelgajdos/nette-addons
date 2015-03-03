@@ -1,6 +1,6 @@
 <?php
 
-namespace PG\Control;
+namespace PG\UI\Control;
 
 use \Nette\Application\UI\Control;
 use Nette\Http\Request;
@@ -20,6 +20,9 @@ abstract class BaseControl extends Control
 
     /** @var Request */
     protected $httpRequest;
+
+    /** @var Array */
+    public $onNewFlashMessage;
 
 	public function setTranslator(ITranslator $translator)
 	{
