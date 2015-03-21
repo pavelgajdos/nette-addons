@@ -15,11 +15,15 @@ class FileManager extends Object
     protected $fileStack;
 
     /** @var string */
-    protected $basePath;
+    protected $wwwDir;
 
-    public function __construct($basePath)
+    /** @var string */
+    protected $directory;
+
+    public function __construct($wwwDir, $directory)
     {
-        $this->basePath = $basePath;
+        $this->wwwDir = $wwwDir;
+        $this->directory = $directory;
     }
 
     public function removeFile($path)
@@ -48,13 +52,18 @@ class FileManager extends Object
 
     }
 
-    public function getAbsolutePath($path, $class = NULL)
+    public function getAbsolutePath($path)
+    {
+        return $this->wwwDir . "/" . $this->getRelativePath($path);
+    }
+
+    public function getRelativePath($path)
     {
         $delimiter = "/";
 
         if ($path[0] == '/')
             $delimiter = "";
 
-        return $this->basePath . $delimiter . $path;
+        return $this->directory . $delimiter . $path;
     }
 } 
