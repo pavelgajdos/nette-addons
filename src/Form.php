@@ -23,8 +23,12 @@ class Form  extends \Nette\Application\UI\Form {
     const FILE_SELECT_TYPE_ALL = 0;
     const FILE_SELECT_TYPE_IMAGE = 1;
 
-    public function addFileSelect($name, $label = null, $type = self::FILE_SELECT_TYPE_ALL, $accessKey = null)
+    public function addFileSelect($name, $label = null, $type = self::FILE_SELECT_TYPE_ALL, $subfolder = 'common')
     {
+        if ($subfolder !== null) {
+            @setcookie('RF_subfolder', $subfolder.'/', time() + (86400 * 30), "/");
+        }
+
         $input =  $this->addText($name, $label);
 
         $html = Html::el('div')
@@ -37,7 +41,7 @@ class Form  extends \Nette\Application\UI\Form {
         $input->setOption("description",$html);
         $input->setAttribute("class", "file-external");
         $input->setAttribute("data-type",$type);
-        $input->setAttribute("data-akey",$accessKey);
+        $input->setAttribute("autocomplete", "off");
 
         return $input;
     }
