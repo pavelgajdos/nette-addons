@@ -24,7 +24,7 @@ class FileSelect extends TextBase
 
     public static function register($methodName = 'addFileSelect')
     {
-        Container::extensionMethod($methodName, function(Container $_this, $name, $label, $type = self::TYPE_ALL, $subfolder = self::DEFAULT_FOLDER) {
+        Container::extensionMethod($methodName, function (Container $_this, $name, $label, $type = self::TYPE_ALL, $subfolder = self::DEFAULT_FOLDER) {
             $control = new FileSelect($label, $type, $subfolder);
             return $_this[$name] = $control;
         });
@@ -41,7 +41,7 @@ class FileSelect extends TextBase
         $this->fileType = $type;
 
         if ($subfolder !== null) {
-            @setcookie('RF_subfolder', $subfolder.'/', time() + (86400 * 30), "/");
+            @setcookie('RF_subfolder', $subfolder . '/', time() + (86400 * 30), "/");
         }
     }
 
@@ -62,7 +62,7 @@ class FileSelect extends TextBase
      */
     public function getControl()
     {
-        // code below is taken from text input class
+        // code below is taken from the text input class
         $input = parent::getControl();
 
         foreach ($this->getRules() as $rule) {
@@ -101,25 +101,27 @@ class FileSelect extends TextBase
         // code above is taken from the text input class
 
         $currentClasses = [];
-        foreach ($input->attrs['class'] as $class=>$expr)
-            if ($expr)
-                $currentClasses[] = $class;
+
+        if (isset($input->attrs['class']))
+            foreach ($input->attrs['class'] as $class => $expr)
+                if ($expr)
+                    $currentClasses[] = $class;
 
         $currentClasses = implode(" ", $currentClasses);
 
         $input->addAttributes([
-            'class'=>'file-external text '.$currentClasses,
-            'data-type'=>$this->fileType,
-            'autocomplete'=>'off'
+            'class' => 'file-external text ' . $currentClasses,
+            'data-type' => $this->fileType,
+            'autocomplete' => 'off'
         ]);
 
         $container = Html::el();
 
         $preview = Html::el("div")
             ->addAttributes([
-                'class'=>$this->fileType == self::TYPE_IMAGE ? 'picture-preview' : 'file-preview',
-                'style'=>"margin-top:10px;",
-                'data-id'=>$this->getHtmlId()
+                'class' => $this->fileType == self::TYPE_IMAGE ? 'picture-preview' : 'file-preview',
+                'style' => "margin-top:10px;",
+                'data-id' => $this->getHtmlId()
             ]);
 
         $container->add($input);
