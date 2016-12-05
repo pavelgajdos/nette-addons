@@ -27,18 +27,24 @@ class Filter
     public function orderBy(Fluent $statement, BaseEntity $entity, Property $property)
     {
         $orderByProperty = @func_get_arg(3);
-        $targetEntity = $this->mapper->getEntityClass($property->getRelationship()->getTargetTable());
-        $reflection = $targetEntity::getReflection();
-        $orderByColumn = $reflection->getEntityProperty($orderByProperty)->getColumn();
+        list($orderByProperty, $orderByColumn) = explode(":", $orderByProperty);
+        if (!$orderByColumn) {
+            $targetEntity = $this->mapper->getEntityClass($property->getRelationship()->getTargetTable());
+            $reflection = $targetEntity::getReflection();
+            $orderByColumn = $reflection->getEntityProperty($orderByProperty)->getColumn();
+        }
         $statement->orderBy($orderByColumn);
     }
 
     public function orderByDesc(Fluent $statement, BaseEntity $entity, Property $property)
     {
         $orderByProperty = @func_get_arg(3);
-        $targetEntity = $this->mapper->getEntityClass($property->getRelationship()->getTargetTable());
-        $reflection = $targetEntity::getReflection();
-        $orderByColumn = $reflection->getEntityProperty($orderByProperty)->getColumn();
+        list($orderByProperty, $orderByColumn) = explode(":", $orderByProperty);
+        if (!$orderByColumn) {
+            $targetEntity = $this->mapper->getEntityClass($property->getRelationship()->getTargetTable());
+            $reflection = $targetEntity::getReflection();
+            $orderByColumn = $reflection->getEntityProperty($orderByProperty)->getColumn();
+        }
         $statement->orderBy($orderByColumn." DESC");
     }
 }
